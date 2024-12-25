@@ -9,6 +9,9 @@
 [![CMake on Linux](https://github.com/MarbleBlasters/OpenMBUPlus/actions/workflows/cmake-linux.yml/badge.svg)](https://github.com/MarbleBlasters/OpenMBUPlus/actions/workflows/cmake-linux.yml)
 [![CMake on MacOS](https://github.com/MarbleBlasters/OpenMBUPlus/actions/workflows/cmake-mac.yml/badge.svg)](https://github.com/MarbleBlasters/OpenMBUPlus/actions/workflows/cmake-mac.yml)
 
+![Discord](https://img.shields.io/discord/1309583632284909668?style=plastic&logo=Discord&label=Discord&color=%235865F2&link=https%3A%2F%2Fdiscord.com%2Finvite%2FMxxMMwB3RN)
+
+
 OpenMBU+ is a reverse-engineered version of Marble Blast Ultra based on Torque Shader Engine 0.9 (MS4). The game is a puzzle-platformer originally developed by GarageGames and released on January 25, 2006 for the Xbox 360 via Xbox Live Arcade.
 
 Marble Blast Ultra was one of XBLA’s breakout titles, selling over 24,000 copies within the first four days of its launch. It quickly rolled into the [Top Played Xbox Live Games list](https://news.xbox.com/en-us/2006/02/11/marble-blast-rolls-into-the-top-xbox-live-games-list/), sharing the limelight with Halo 2, Call of Duty 2, and Dead or Alive 4.
