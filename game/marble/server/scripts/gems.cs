@@ -132,28 +132,28 @@ datablock ItemData(GemItem_3pts: GemItem)
 {
    skin = "turquoise";
    points = 3;
-   referenceColor = "0 0.9 0.4";
+   referenceColor = "0.1 1 0.9";
 };
 
 datablock ItemData(GemItem_4pts: GemItem) 
 {
    skin = "pink";
    points = 4;
-   referenceColor = "0.9 0.2 0";
+   referenceColor = "1 0.1 0.8";
 };
 
 datablock ItemData(GemItem_6pts: GemItem) 
 {
    skin = "orange";
    points = 6;
-   referenceColor = "0.5 0.5 0";
+   referenceColor = "1 0.5 0.1";
 };
 
 datablock ItemData(GemItem_8pts: GemItem) 
 {
    skin = "purple";
    points = 8;
-   referenceColor = "0.8 0 0.6";
+   referenceColor = "0.5 0.1 1 1";
 };
 
 datablock ItemData(GemItem_9pts: GemItem) 
