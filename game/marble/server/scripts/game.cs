@@ -1676,6 +1676,12 @@ function GameConnection::getMarbleChoice( %this )
          return MarbleThirtySix;
       case 36:
          return MarbleThirtySeven;
+      case 37:
+         return MarbleThirtyEight;
+      case 38:
+         return MarbleThirtyNine;
+      case 39:
+         return MarbleFourty;
    }
    
    return MarbleOne;
