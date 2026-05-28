@@ -74,6 +74,7 @@
 #ifdef MB_CLIENT_PHYSICS_EVERY_FRAME
 #include "game/gameConnection.h"
 #endif
+#include <git_version.cpp>
 
 #ifndef BUILD_TOOLS
 DemoGame GameObject;
@@ -117,9 +118,19 @@ ConsoleFunction(createCanvas, bool, 2, 2, "(string windowTitle)"
     */
     //Platform::initWindow(Point2I(800, 600), argv[1]);
     std::string gitHashTitle = kGitHash;
+    std::string gitHashBranch = kGitBranch;
+    std::string gitHashDate = kGitBuildDate;
+    std::string gitHashTime = kGitBuildTime;
     std::string gameName = argv[1];
-    gameName.append(" #");
-    std::string gameTitle = gameName + gitHashTitle;
+
+    #ifdef NDEBUG
+    std::string buildMode = "RELEASE";
+    #else
+    std::string buildMode = "DEBUG";
+    #endif
+
+    gameName.append(" ");
+    std::string gameTitle = gameName + "(" + gitHashBranch + "/" + gitHashTitle + "/" + kGitBuildDate +") " + buildMode;
     const char* cTitle = gameTitle.c_str();
     Platform::initWindow(Point2I(800, 600), cTitle);
 
@@ -428,7 +439,18 @@ bool initGame(int argc, const char** argv)
 #endif
 
     std::string gitHashTitle = kGitHash;
+    std::string gitHashBranch = kGitBranch;
+    std::string gitHashDate = kGitBuildDate;
+    std::string gitHashTime = kGitBuildTime;
     Con::setVariable("$Game::CodeHash", kGitHash);
+    Con::setVariable("$Game::CodeHashBranch", kGitBranch);
+    Con::setVariable("$Game::CodeHashDate", kGitBuildDate);
+    Con::setVariable("$Game::CodeHashTime", kGitBuildTime);
+#ifdef NDEBUG
+    Con::setVariable("$Game::BuildMode", "RELEASE");
+#else
+    Con::setVariable("$Game::BuildMode", "DEBUG");
+#endif
 
     //
  /*
