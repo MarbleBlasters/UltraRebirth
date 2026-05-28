@@ -30,7 +30,7 @@ function(CheckGitVersion)
         WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
         OUTPUT_VARIABLE GIT_HASH
         OUTPUT_STRIP_TRAILING_WHITESPACE
-        )
+    )
 
     CheckGitRead(GIT_HASH_CACHE)
     if (NOT EXISTS ${post_configure_dir})

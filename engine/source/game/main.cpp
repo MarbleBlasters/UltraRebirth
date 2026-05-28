@@ -118,7 +118,7 @@ ConsoleFunction(createCanvas, bool, 2, 2, "(string windowTitle)"
     */
     //Platform::initWindow(Point2I(800, 600), argv[1]);
     std::string gitHashTitle = kGitHash;
-    std::string gitHashBranch = kGitBranch;
+    std::string gitHashBranch = "Pickles";
     std::string gitHashDate = kGitBuildDate;
     std::string gitHashTime = kGitBuildTime;
     std::string gameName = argv[1];
