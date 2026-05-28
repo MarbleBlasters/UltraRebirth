@@ -1,3 +1,5 @@
 #include "git_version.h"
 const char *kGitHash = "@GIT_HASH@";
 const char *kGitBranch = "@GIT_BRANCH@";
+const char *kGitBuildDate = __DATE__;
+const char *kGitBuildTime = __TIME__;
