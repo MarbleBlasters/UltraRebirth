@@ -135,6 +135,7 @@ function initClient()
    exec("./ui/videoOptionsGui.gui");
    exec("./ui/miscOptionsGui.gui");
    exec("./ui/marblePickerGui.gui");
+   exec("./ui/marbleSelectionGui.gui");
    exec("./ui/aboutMenuOptionsGui.gui");
    exec("./ui/helpGui.gui");
    exec("./ui/demoTimerGui.gui");

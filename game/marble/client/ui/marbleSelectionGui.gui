@@ -1,0 +1,256 @@
+//--- OBJECT WRITE BEGIN ---
+new GuiControl(marbleSelectionGui) {
+   profile = "GuiDefaultProfile";
+   horizSizing = "right";
+   vertSizing = "bottom";
+   position = "0 0";
+   extent = "640 480";
+   minExtent = "8 2";
+   visible = "1";
+
+
+   new GuiBitmapCtrl(marblepic) {
+      profile = "GuiDefaultProfile";
+      horizSizing = "right";
+      vertSizing = "bottom";
+      position = "1000 470";
+      extent = "255 119";
+      minExtent = "8 8";
+      visible = "1";
+      bitmap = "./xbox/achievement.png";
+      wrap = "0";
+         helpTag = "0";
+   };
+
+   new GuiWindowCtrl(MarbleSelectionGenericBG) {
+      profile = "bgBoxProfile";
+      horizSizing = "right";
+      vertSizing = "bottom";
+      position = "775 0";
+      extent = "500 600";
+      maxLength = "255";
+      resizeWidth = "1";
+      resizeHeight = "1";
+      canClose = "0";
+      canMinimize = "0";
+      canMaximize = "0";
+      canMove = "0";
+      minSize = "50 50";
+
+       new GuiScrollCtrl(MarbleScroll) {
+			profile = "GuiScrollProfile";
+			horizSizing = "width";
+			vertSizing = "height";
+			position = "22 70";
+			extent = "456 512";
+			minExtent = "8 8";
+			visible = "1";
+			helpTag = "0";
+			willFirstRespond = "1";
+			hScrollBar = "alwaysOff";
+			vScrollBar = "alwaysOn";
+			constantThumbHeight = "0";
+			childMargin = "0 0";
+
+         new GuiDynamicCtrlArrayControl(MarbleSelectionArray)
+         {
+            profile = "GuiDefaultProfile";
+            position = "22 70";
+            extent = "455 512";
+            lineSpacing = "2";
+            maxChars = "-1";
+            lineCount = 0;
+            visible = 1;
+            colSize = 72;
+            rowSize = 72;
+            colCount = 6;
+
+         };
+		};
+
+      
+
+		
+
+      new GuiXboxOptionListCtrl(marbleSelectionOptionList) {
+      profile = isWidescreen()? "TextOptionListProfile" : "TextOptionListSmallProfile";
+      position = "-8 -2";
+      extent = "487 100";
+      horizSizing = isWidescreen()? "right" : "left";
+      vertSizing = "center";
+      // there can only be two columns; these values are percentages of total extent
+      columns = isWidescreen()? "50 50" : "45 55";
+      // each column can have a left and right margin, specified here.  order is 
+      // C1L C1R C2L C2R.  amount is in pixels
+      columnMargins = isWidescreen()? "0 20 5 50" : "0 0 2 30";
+      // for debugging, show the region update rect and column rects (with margins)
+      showRects = 0;
+      
+      // data is dynamically added to this option list in the show() function
+   };
+	};
+
+};
+//--- OBJECT WRITE END ---
+
+function marbleSelectionGui::onWake( %this )
+{
+   // Load marble picker mission
+   GameMissionInfo.setMode( GameMissionInfo.SpecialMode );
+   GameMissionInfo.selectMission( 0 );
+   commandToServer('SetMarble', $pref::marbleIndex);
+   commandToServer('SpawnMarblePickerMarble');
+}
+
+function marbleSelectionGui::show(%this, %backGui)
+{
+
+   MarbleSelectionArray.clear();
+   //MarbleList.clear();
+   //MarbleList.extent = "685 0";
+
+   // Change THIS variable to add/remove marbles
+   %numMarbles = 44;
+   
+   %marbleString = "";
+   for( %i = 0; %i < %numMarbles; %i++ )
+   {
+      %this.addMarble(1, %i);
+   }
+   
+	if (%backGui !$= "")
+      %this.backGui = %backGui;    
+
+   marbleSelectionOptionList.clear();
+   marbleSelectionOptionList.addRow("Marble", %marbleString, %numMarbles);
+   marbleSelectionOptionList.setOptionIndex(%row, $pref::marbleIndex); 
+   
+   RootGui.setA( $Text::OK );
+   RootGui.setTitle( $Text::About0Title );
+   //RootGui.setTitle( "CHOOSE YOUR MARBLE" );
+
+   MarbleScroll.setProfile("GameScrollProfile");
+   //MarbleScroll.setTop(14);
+   //MarbleScroll.setTop(16);
+
+}
+
+function marbleSelectionGui::addMarble(%this, %catId, %marbleId) {
+   //echo(%marbleId);
+	//%w = getWord(AchievList.getExtent(), 0);
+	//%h = 64;
+	//%x = 0;
+	//%y = getWord(AchievList.getExtent(), 1);
+
+   %currentMarbleIndex = %marbleId + 1;
+
+	%boxName = "MarbleSelection_" @ %catId @ "_" @ %currentMarbleIndex;
+   %boxNameButton = "MarbleSelectionButton_" @ %catId @ "_" @ %currentMarbleIndex;
+	%imgName = "MarbleSelectionImg_" @ %catId @ "_" @ %currentMarbleIndex;
+   %marbleButtonPreviewName = "Marble_" @ %catId @ "_" @ %currentMarbleIndex;
+
+   %marbleSkin = %currentMarbleIndex;
+   if(%currentMarbleIndex < 10){
+      %marbleSkin = "0" @ %currentMarbleIndex;
+   }
+
+	%box = new GuiControl(%boxName) {
+		profile = "GuiDefaultProfile";
+		horizSizing = "width";
+		vertSizing = "bottom";
+		position = "0 0";
+		extent = "72 72";
+		minExtent = "8 8";
+		visible = "1";
+
+      new GuiObjectView(%marbleButtonPreviewName) {
+            profile = "GuiDefaultProfile";
+            horizSizing = "right";
+            vertSizing = "bottom";
+            position = "0 0";
+            extent = "72 72";
+            minExtent = "8 8";
+            visible = "1";
+            helpTag = "0";
+            cameraZRot = "0";
+            forceFOV = "0";
+            model = "~/data/shapes/balls/marble" @ %marbleSkin @ ".dts";
+            skin = "base";
+            cameraRotX = "0.4";
+            cameraZRotSpeed = "0.001";
+            orbitDistance = "0.65";
+            autoSize = "1";
+         };
+
+      new GuiButtonBaseCtrl(%boxNameButton) {
+         profile = "GuiDefaultProfile";
+         horizSizing = "width";
+         vertSizing = "bottom";
+         position = "0 0";
+         extent = "72 72";
+         minExtent = "8 8";
+         visible = "1";
+         command = "ChooseThisMarble(" @ %marbleId @ ");";
+
+      };   
+
+
+	};
+
+	//%text = %achName;
+   //%desc = %achDesc;
+   //%points = %achPoint;
+	//%textNameTitle.setText(%text);
+   //%textNameDesc.setText(%desc @ " • " @ %points @ "G");
+   //%textPoints.setText(%points @ "G");
+
+   %iconId = %id;
+   if(%earned){
+      //%imgName.setBitmap("marble/client/ui/achievement/" @ %iconId @ ".png");
+   } else {
+      //%imgName.setBitmap("marble/client/ui/achievement/" @ %iconId @ "_l.png");
+   }
+
+	MarbleSelectionArray.add(%box);
+	//MarbleList.setHeight(%y + %h);
+}
+
+function ChooseThisMarble(%number){
+   echo("SELECTING MARBLE: " @ %number);
+   $pref::marbleIndex = %number;
+   commandToServer('SetMarble', $pref::marbleIndex);
+   commandToServer('SpawnMarblePickerMarble');
+}
+
+function marbleSelectionOptionList::onOptionChange(%this, %increase)
+{
+   //%row = %this.getSelectedIndex();
+   //%val = %this.getOptionIndex(%row); 
+   
+   //$pref::marbleIndex = %val;
+   
+   // Because the server is running in the background...
+   //commandToServer('SetMarble', $pref::marbleIndex);
+   //commandToServer('SpawnMarblePickerMarble');
+}
+
+function marbleSelectionGui::onA(%this)
+{
+   // Delete the marble just so it doesn't show up anywhere else
+   commandToServer('DestroyMarblePickerMarble');
+   
+   // Save the profile
+   if (isPCBuild())
+   {
+      saveUserProfile();
+   } else
+   {
+      %string = CurrentGamerProfile.packProfile();
+      CurrentGamerProfile.saveProfile(%string);
+   }
+   
+   // Return to selected mission
+   GameMissionInfo.setMode( GameMissionInfo.SPMode );
+   GameMissionInfo.selectMission( GameMissionInfo.getCurrentIndex() );
+   RootGui.setContent(HelpAndOptionsGui, %this.backGui);
+}
