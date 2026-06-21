@@ -27,6 +27,8 @@ new GuiControl(marblePickerGui) {
 };
 //--- OBJECT WRITE END ---
 
+$totalMarbles = 43;
+
 function marblePickerGui::onWake( %this )
 {
    // Load marble picker mission
@@ -39,7 +41,7 @@ function marblePickerGui::onWake( %this )
 function marblePickerGui::show(%this, %backGui)
 {
    // Change THIS variable to add/remove marbles
-   %numMarbles = 44;
+   %numMarbles = $totalMarbles;
    
    %marbleString = "";
    for( %i = 0; %i < %numMarbles; %i++ )
