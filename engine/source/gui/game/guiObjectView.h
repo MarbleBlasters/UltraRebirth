@@ -48,6 +48,7 @@ protected:
     StringTableEntry mModelName;
     StringTableEntry mSkinName;
     bool mAutoSize;
+    bool mEnableReflections;
 
 public:
     void onSleep();

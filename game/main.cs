@@ -362,7 +362,7 @@ function initVideo()
    $pref::Video::VSync = 1;
    $pref::Video::monitorNum = 0;
    $pref::Video::fullScreen = "0";
-   $GameClientVersion = "1.0.0 Beta 4";
+   $GameClientVersion = "1.0.0 Beta 5";
 
    if (!$vidAlreadySet)
    {

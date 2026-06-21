@@ -13,6 +13,8 @@
 // GuiObjectView
 //-----------------------------------------------------------------------------
 
+// TODO - Fix reflective object rendering.
+
 GuiObjectView::GuiObjectView()
     : mMaxOrbitDist(5.0f),
       mMinOrbitDist(0.0f),
@@ -40,6 +42,7 @@ GuiObjectView::GuiObjectView()
     mModelName = NULL;
     mSkinName = StringTable->insert("base");
     mAutoSize = false;
+    mEnableReflections = false;
 }
 
 GuiObjectView::~GuiObjectView()
@@ -86,6 +89,7 @@ void GuiObjectView::initPersistFields()
     addField("cameraZRotSpeed", TypeF32, Offset(mCameraRotSpeed.z, GuiObjectView));
     addField("orbitDistance", TypeF32, Offset(mOrbitDist, GuiObjectView));
     addField("autoSize", TypeBool, Offset(mAutoSize, GuiObjectView));
+    addField("reflections", TypeBool, Offset(mEnableReflections, GuiObjectView));
 }
 
 void GuiObjectView::onMouseDown(const GuiEvent &event)
