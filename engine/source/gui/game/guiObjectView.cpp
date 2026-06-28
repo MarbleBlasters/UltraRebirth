@@ -8,6 +8,7 @@
 #include "sceneGraph/lightManager.h"
 #include "lightingSystem/sgLightManager.h"
 #include "sceneGraph/sceneGraph.h"
+#include "gfx/cubemapData.h"
 
 //-----------------------------------------------------------------------------
 // GuiObjectView
@@ -42,7 +43,7 @@ GuiObjectView::GuiObjectView()
     mModelName = NULL;
     mSkinName = StringTable->insert("base");
     mAutoSize = false;
-    mEnableReflections = false;
+    //renderingObjectView = false;
 }
 
 GuiObjectView::~GuiObjectView()
@@ -89,7 +90,6 @@ void GuiObjectView::initPersistFields()
     addField("cameraZRotSpeed", TypeF32, Offset(mCameraRotSpeed.z, GuiObjectView));
     addField("orbitDistance", TypeF32, Offset(mOrbitDist, GuiObjectView));
     addField("autoSize", TypeBool, Offset(mAutoSize, GuiObjectView));
-    addField("reflections", TypeBool, Offset(mEnableReflections, GuiObjectView));
 }
 
 void GuiObjectView::onMouseDown(const GuiEvent &event)
@@ -291,6 +291,8 @@ void GuiObjectView::onMouseLeave(const GuiEvent &event)
     Con::executef(this, 1, "onMouseLeave");
 }
 
+bool renderingObjectView = false;
+
 void GuiObjectView::renderWorld(const RectI &updateRect)
 {
     if ((!mModel) && (!mMountedModel))
@@ -298,6 +300,8 @@ void GuiObjectView::renderWorld(const RectI &updateRect)
         // nothing to render, punt
         return;
     }
+
+    renderingObjectView = true;
 
     S32 time = Platform::getVirtualMilliseconds();
     S32 dt = time - lastRenderTime;
@@ -320,6 +324,15 @@ void GuiObjectView::renderWorld(const RectI &updateRect)
     TSMesh::setCamTrans(meshCamTrans);
     TSMesh::setSceneState(NULL);
     TSMesh::setObject(NULL);
+
+    CubemapData* cmap = static_cast<CubemapData*>(Sim::findObject("sky_picker"));
+    if (cmap != NULL) {
+        //cmap->createMap();
+        TSMesh::setCubemap(cmap->cubemap);
+    }
+    else {
+        TSMesh::setCubemap(NULL);
+    }
 
     if (mModel)
     {
@@ -351,6 +364,8 @@ void GuiObjectView::renderWorld(const RectI &updateRect)
     gRenderInstManager.clear();
 
     lm->sgSetSpecialLight(LightManager::sgSunLightType, oldLight);
+
+    renderingObjectView = false;
 
     //lm->sgUnregisterGlobalLight(mFakeSun);
     //lm->sgClearSpecialLights();

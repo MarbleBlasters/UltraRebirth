@@ -34,6 +34,8 @@
 #include "game/gameProcess.h"
 
 #include "game/marble/marble.h"
+//#include "gfx/cubemapData.h"
+//#include "gui/game/guiObjectView.h"
 
 bool gNoRenderAstrolabe = false;
 bool gForceNotHidden = false;
@@ -2505,6 +2507,8 @@ void ShapeBase::prepBatchRender(SceneState* state, S32 mountedImageIndex)
     MatrixF world = GFX->getWorldMatrix();
     TSMesh::setCamTrans(world);
     TSMesh::setSceneState(state);
+
+    //CubemapData* cmap = static_cast<CubemapData*>(Sim::findObject("sky_environment"));
     TSMesh::setCubemap(mDynamicCubemap);
     TSMesh::setObject(this);
 

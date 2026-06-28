@@ -681,6 +681,14 @@
             "marble/data/skies/env_UP",
             "marble/data/skies/env_DN"
         ],
+        "sky_picker": [
+            "marble/data/skies/exp_SO",
+            "marble/data/skies/exp_NO",
+            "marble/data/skies/exp_EA",
+            "marble/data/skies/exp_WE",
+            "marble/data/skies/exp_UP",
+            "marble/data/skies/exp_DN"
+        ],
         "marbleCubemap3": [
             "marble/data/skies/marbleCubemap3_SO",
             "marble/data/skies/marbleCubemap3_NO",

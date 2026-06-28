@@ -9,6 +9,8 @@
 #include "gui/core/guiTSControl.h"
 #include "ts/tsShapeInstance.h"
 
+extern bool renderingObjectView;
+
 class LightInfo;
 
 class GuiObjectView : public GuiTSCtrl
@@ -48,7 +50,7 @@ protected:
     StringTableEntry mModelName;
     StringTableEntry mSkinName;
     bool mAutoSize;
-    bool mEnableReflections;
+    //bool renderingObjectView;
 
 public:
     void onSleep();
@@ -97,6 +99,7 @@ public:
 
     static void initPersistFields();
 
+
 private:
     F32 mMaxOrbitDist;
     F32 mMinOrbitDist;
@@ -104,6 +107,7 @@ private:
 
     static const S32 MAX_ANIMATIONS = 6;    ///< Maximum number of animations for the primary model displayed in this control
     static const S32 NO_NODE = -1;   ///< Indicates there is no node with a mounted object
+
 };
 
 #endif
