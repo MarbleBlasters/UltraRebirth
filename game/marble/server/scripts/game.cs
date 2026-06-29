@@ -2349,11 +2349,14 @@ function serverCmdSpawnMarblePickerMarble(%client)
    %client.dummyMarble = %dummy;
 
    %velAdd = (1-2*getRandom()) * $pickerRandomVelx;
+   if(%velAdd < 0){
+      %velAdd = 0;
+   }
    %velAdd = %velAdd SPC (1-2*getRandom()) * $pickerRandomVely;
    %velAdd = %velAdd SPC (1-2*getRandom()) * $pickerRandomVelz;
    %vel = VectorAdd($pickerVelocity,%velAdd);
 
-   %dummy.setPosition(VectorAdd(%pos,"0 1 1"), 0.45);
+   %dummy.setPosition(VectorAdd(%pos,"-2 1 1"), 0.45);
    %dummy.setVelocity(%vel);
    %dummy.setShapeName(%client.getMarbleChoice());
    %dummy.setGravityDir("1 0 0 0 -1 0 0 0 -1",true);

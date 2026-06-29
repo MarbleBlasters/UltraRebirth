@@ -687,7 +687,7 @@
             "marble/data/skies/exp_EA",
             "marble/data/skies/exp_WE",
             "marble/data/skies/exp_UP",
-            "marble/data/skies/exp_DN"
+            "marble/data/skies/exp_DN_fixed"
         ],
         "marbleCubemap3": [
             "marble/data/skies/marbleCubemap3_SO",

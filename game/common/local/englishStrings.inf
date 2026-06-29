@@ -699,3 +699,51 @@ $Text::TriggerTextFans = "Beware of the wind from the fans.";
 $Text::TriggerTextBumpers = "Bumpers push back when you collide with them.";
 $Text::TriggerTextAirMove = "You can change the direction of your spin even while in the air.";
 $Text::MultiplayerStartup = "Collect the most gems to win!";
+
+;-------------------------------------------------------------------------------
+; Marble Name Strings
+;-------------------------------------------------------------------------------
+
+$MarbleName[0] = "Blue Swirls";
+$MarbleName[1] = "Clear Water";
+$MarbleName[2] = "Orange Swirls";
+$MarbleName[3] = "Purple Swirls";
+$MarbleName[4] = "Red Watermelon";
+$MarbleName[5] = "Watermelon";
+$MarbleName[6] = "Blue Watermelon";
+$MarbleName[7] = "Superball";
+$MarbleName[8] = "8-Ball";
+$MarbleName[9] = "GarageGames";
+$MarbleName[10] = "Sunny Side Up";
+$MarbleName[11] = "Orange Spiral";
+$MarbleName[12] = "Red and X";
+$MarbleName[13] = "Battery";
+$MarbleName[14] = "Blue Spiral";
+$MarbleName[15] = "Football";
+$MarbleName[16] = "Fred";
+$MarbleName[17] = "Pirate";
+$MarbleName[18] = "Orange Checkers";
+$MarbleName[19] = "Earth";
+$MarbleName[20] = "Sliced";
+$MarbleName[21] = "Ace of Hearts";
+$MarbleName[22] = "Shuriken";
+$MarbleName[23] = "Ace of Spades";
+$MarbleName[24] = "Walled Up";
+$MarbleName[25] = "Green Water";
+$MarbleName[26] = "Pink Water";
+$MarbleName[27] = "Blue Water";
+$MarbleName[28] = "Red Water";
+$MarbleName[29] = "Yellow Water";
+$MarbleName[30] = "9-Ball";
+$MarbleName[31] = "Bob";
+$MarbleName[32] = "Lunar";
+$MarbleName[33] = "Mirror";
+$MarbleName[34] = "Torque";
+$MarbleName[35] = "Jack-o-Lantern";
+$MarbleName[36] = "Eyeball";
+$MarbleName[37] = "Scratched Up";
+$MarbleName[38] = "Red Star";
+$MarbleName[39] = "Angry Eyes";
+$MarbleName[40] = "Blue Rebirth";
+$MarbleName[41] = "Green Rebirth";
+$MarbleName[42] = "Red Rebirth";

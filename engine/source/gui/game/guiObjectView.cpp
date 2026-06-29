@@ -43,7 +43,8 @@ GuiObjectView::GuiObjectView()
     mModelName = NULL;
     mSkinName = StringTable->insert("base");
     mAutoSize = false;
-    //renderingObjectView = false;
+    GFXCubemapHandle cmapHandle;
+    cubeMapTexture = NULL;
 }
 
 GuiObjectView::~GuiObjectView()
@@ -73,6 +74,14 @@ bool GuiObjectView::onWake()
     if (mModelName && mModelName[0])
         setObjectModel(mModelName, mSkinName);
 
+    if (cubeMapTexture != NULL) {
+        CubemapData* cmap = static_cast<CubemapData*>(Sim::findObject(cubeMapTexture));
+        if (cmap) {
+            cmap->createMap();
+            cmapHandle = cmap->cubemap;
+        }
+    }
+
     return true;
 }
 
@@ -90,6 +99,7 @@ void GuiObjectView::initPersistFields()
     addField("cameraZRotSpeed", TypeF32, Offset(mCameraRotSpeed.z, GuiObjectView));
     addField("orbitDistance", TypeF32, Offset(mOrbitDist, GuiObjectView));
     addField("autoSize", TypeBool, Offset(mAutoSize, GuiObjectView));
+    addField("cubeMap", TypeString, Offset(cubeMapTexture, GuiObjectView));
 }
 
 void GuiObjectView::onMouseDown(const GuiEvent &event)
@@ -324,14 +334,8 @@ void GuiObjectView::renderWorld(const RectI &updateRect)
     TSMesh::setCamTrans(meshCamTrans);
     TSMesh::setSceneState(NULL);
     TSMesh::setObject(NULL);
-
-    CubemapData* cmap = static_cast<CubemapData*>(Sim::findObject("sky_picker"));
-    if (cmap != NULL) {
-        //cmap->createMap();
-        TSMesh::setCubemap(cmap->cubemap);
-    }
-    else {
-        TSMesh::setCubemap(NULL);
+    if (cubeMapTexture != NULL) {
+        TSMesh::setCubemap(cmapHandle);
     }
 
     if (mModel)

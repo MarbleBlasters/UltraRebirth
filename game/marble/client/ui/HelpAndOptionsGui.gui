@@ -43,11 +43,12 @@ function HelpAndOptionsGui::onA(%this)
    switch( %idx )
    {
       case 0:
-         if($toggleDev){
-            RootGui.setContent(marbleSelectionGui, %this.backGui);
-         } else {
-            RootGui.setContent(marblePickerGui, %this.backGui);
-         }
+         RootGui.setContent(marbleSelectionGui, %this.backGui);
+         //if($toggleDev){
+         //   RootGui.setContent(marbleSelectionGui, %this.backGui);
+         //} else {
+         //   RootGui.setContent(marblePickerGui, %this.backGui);
+         //}
       case 1: 
          RootGui.setContent(inputAndSoundOptionsGui, %this.backGui);
       case 2: 

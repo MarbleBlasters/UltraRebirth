@@ -50,6 +50,8 @@ protected:
     StringTableEntry mModelName;
     StringTableEntry mSkinName;
     bool mAutoSize;
+    GFXCubemapHandle cmapHandle;
+    StringTableEntry cubeMapTexture;
     //bool renderingObjectView;
 
 public:
